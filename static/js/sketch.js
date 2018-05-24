@@ -13,10 +13,11 @@ function preload(){
 
 function setup(){
 	createCanvas(100, 50)
-	background(153)
+	background(255)
 }
 
 function draw(){
+	background(255)
 	image(imgs[frame%imgs.length], 0, 0)
 	frame++
 }
