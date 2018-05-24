@@ -1,9 +1,11 @@
 from flask import Flask, render_template
-from flask_socketio import SocketIO, send
+from flask_socketio import SocketIO, send, join_room, leave_room
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'unicorn'
 socketio = SocketIO(app)
+clients = {}
+rooms = {}
 
 @socketio.on('message')
 def handleMessage(msg):
