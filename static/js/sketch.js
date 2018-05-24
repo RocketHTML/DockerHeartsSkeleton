@@ -7,7 +7,7 @@ frame = 0;
 
 function preload(){
 	for (let i = 0; i < poses.length; i++){
-		imgs[i] = loadImage(dir + poses[i])
+		imgs[i] = loadImage(dir + poses[i] + '.png')
 	}
 }
 
