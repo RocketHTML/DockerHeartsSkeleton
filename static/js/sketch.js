@@ -13,7 +13,7 @@ function preload(){
 
 function setup(){
 	createCanvas(100, 50)
-	background(255)
+	background(0)
 }
 
 function draw(){
