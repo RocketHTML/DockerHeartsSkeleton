@@ -4,6 +4,7 @@ poses = ['standup', 'walkup1', 'walkup2',
 imgs = []
 dir = 'static/ayanaposes/'
 frame = 0;
+bg = 0
 
 function preload(){
 	for (let i = 0; i < poses.length; i++){
@@ -13,11 +14,11 @@ function preload(){
 
 function setup(){
 	createCanvas(100, 50)
-	background(0)
+	background(bg)
 }
 
 function draw(){
-	background(255)
+	background(bg)
 	image(imgs[frame%imgs.length], 0, 0)
 	frame++
 }
