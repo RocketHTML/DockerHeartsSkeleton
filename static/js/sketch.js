@@ -18,4 +18,5 @@ function setup(){
 
 function draw(){
 	image(imgs[frame%imgs.length], 0, 0)
+	frame++
 }
