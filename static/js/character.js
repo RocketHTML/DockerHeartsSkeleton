@@ -34,7 +34,8 @@ class Character {
 		this.cdir = 3;
 		this.cframe = 0;
 		this.cc = 0;
-		this.slow = 60;
+		this.slow = 4;
+		this.walkSpeed = 10;
 		this.isWalking = 0;
 	}
 
@@ -58,29 +59,30 @@ class Character {
 		const R = 0, L = 1, U = 2, D = 3;
 		let l = this.img_mtrx[this.cdir].length;
 		let w = this.isWalking;
+		let seq = [0,1,0,2]
 
-		this.cc == (this.cc + 1) % (this.slow * l);
+		this.cc += 1;
 		this.cframe = 0;
-
-		if (w === 1)
-			this.cframe = (this.cc / this.slow) % (l-1) + 1;
-
+		if (w === 1){
+			this.cframe = seq[Math.floor(this.cc / this.slow) % seq.length];
+		}
+		let sp = this.walkSpeed;
 		switch (this.cdir){
 			case R:
-				this.xx += 5 * w;
+				this.xx += sp * w;
 				break;
 			case L:
-				this.xx -= 5 * w;
+				this.xx -= sp * w;
 				break;
 			case U:
-				this.yy -= 5 * w;
+				this.yy -= sp * w;
 				break;
 			case D:
-				this.yy += 5 * w;
+				this.yy += sp * w;
 				break;
 		}
-		this.x = this.xx / this.slow;
-		this.y = this.yy / this.slow;
+		this.x = Math.floor(this.xx / this.slow);
+		this.y = Math.floor(this.yy / this.slow);
 	}
 
 
