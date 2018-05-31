@@ -1,22 +1,28 @@
-let chars = ['Zack']
-let USER = 0
-let poses = ['Right', 'Left', 'Back', 'Front']
-
-let right = [], left = [], up = [], down = []; // holds images
-let directions = [right, left, up, down] // holds all images
-const R = 0; L = 1, U = 2, D = 3; // use on directions array
-
+/////////////////////////////////////////////////////////////////////////////////////////
+////////////// set up arrays 
+/////////////////////////////////////////////////////////////////////////////////////////
+let char = 'Zack'
 let dir = 'static/lockusprites/'
-let frame = 0;
+
+const poses = ['Right', 'Left', 'Back', 'Front']
+const R = 0; L = 1, U = 2, D = 3; 
+let directions = [[], [], [], []] // holds all images
+
 let bg = 0
 
+let zatch = new Character(directions);
+////////////////////////////////////////////////////////////////////////////////////////
+/////////////// sprites loaded
+////////////////////////////////////////////////////////////////////////////////////////
 function preload(){
 	for (let i = 0; i < 3; i++){
-		directions[R][i] = loadImage(dir + chars[USER] + poses[R] + i + '.png')
-		directions[L][i] = loadImage(dir + chars[USER] + poses[L] + i + '.png')
-		directions[U][i] = loadImage(dir + chars[USER] + poses[U] + i + '.png')
-		directions[D][i] = loadImage(dir + chars[USER] + poses[D] + i + '.png')
+		directions[R][i] = loadImage(dir + char + poses[R] + i + '.png')
+		directions[L][i] = loadImage(dir + char + poses[L] + i + '.png')
+		directions[U][i] = loadImage(dir + char + poses[U] + i + '.png')
+		directions[D][i] = loadImage(dir + char + poses[D] + i + '.png')
 	}
+
+
 }
 
 function setup(){
@@ -26,6 +32,9 @@ function setup(){
 
 function draw(){
 	background(bg)
-	image(directions[][], 0, 0)
-	frame++
+	zatch.update();
+	let img = zatch.image();
+	let x = zatch.x;
+	let y = zatch.y;
+	image(img, x, y);
 }
