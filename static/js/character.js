@@ -31,7 +31,7 @@ class Character {
 		this.y = 0;
 		this.xx = 0;
 		this.yy = 0;
-		this.cdir = 0;
+		this.cdir = 3;
 		this.cframe = 0;
 		this.cc = 0;
 		this.slow = 60;

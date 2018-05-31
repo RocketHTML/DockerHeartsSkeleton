@@ -7,7 +7,7 @@ class Keyboard {
 	constructor(doc, character){
 		this.doc = doc;
 		this.doc.addEventListener("keydown", this.move);
-		this.doc.addEventListener("keyup" this.stop);
+		this.doc.addEventListener("keyup", this.stop);
 		this.char = character;
 	}
 

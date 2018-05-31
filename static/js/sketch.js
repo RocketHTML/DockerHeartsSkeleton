@@ -33,7 +33,7 @@ function setup(){
 function draw(){
 	background(bg)
 	zatch.update();
-	let img = zatch.image();
+	let img = zatch.image;
 	let x = zatch.x;
 	let y = zatch.y;
 	image(img, x, y);
