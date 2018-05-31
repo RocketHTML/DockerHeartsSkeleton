@@ -59,7 +59,7 @@ class Character {
 		let l = this.img_mtrx[this.cdir].length;
 		let w = this.isWalking;
 
-		this.cc == (this.cc + 1) % 100;
+		this.cc == (this.cc + 1) % (this.slow * l);
 		this.cframe = 0;
 
 		if (w === 1)
@@ -67,16 +67,16 @@ class Character {
 
 		switch (this.cdir){
 			case R:
-				this.xx += 1 * w;
+				this.xx += 5 * w;
 				break;
 			case L:
-				this.xx -= 1 * w;
+				this.xx -= 5 * w;
 				break;
 			case U:
-				this.yy -= 1 * w;
+				this.yy -= 5 * w;
 				break;
 			case D:
-				this.yy += 1 * w;
+				this.yy += 5 * w;
 				break;
 		}
 		this.x = this.xx / this.slow;
