@@ -6,23 +6,34 @@ class Keyboard {
 
 	constructor(doc, character){
 		this.doc = doc;
+		this.move = moveFunc(1);
+		this.stop = moveFunc(0);
 		this.doc.addEventListener("keydown", this.move);
 		this.doc.addEventListener("keyup", this.stop);
 		this.char = character;
 	}
 
-	move(event){
+	moveFunc(go){
+		let z = this.char;
 		const R = 0, L = 1, U = 2, D = 3;
 		const keys = ["d","a","w","s"];
-		dir = keys.indexOf(event.key);
-		if (dir === -1)
-			return;
-		this.char.direction = dir;
-		this.char.go();
-	}
 
-	stop(event){
-		this.char.stop()
+		function move(event){
+			let dir = keys.indexOf(event.key);
+			if (dir === -1)
+				return;
+			z.direction = dir;
+			z.go();
+		}
+
+		function stop(event){
+			z.stop();
+		}
+
+		if (go === 1)
+			return move;
+		else
+			return stop;
 	}
 
 
