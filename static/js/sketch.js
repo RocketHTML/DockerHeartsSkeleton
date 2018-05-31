@@ -11,6 +11,7 @@ let directions = [[], [], [], []] // holds all images
 let bg = 0
 
 let zatch = new Character(directions);
+let keyboard = new Keyboard(document, zatch);
 ////////////////////////////////////////////////////////////////////////////////////////
 /////////////// sprites loaded
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -26,7 +27,7 @@ function preload(){
 }
 
 function setup(){
-	createCanvas(100, 50)
+	createCanvas(500, 500)
 	background(bg)
 }
 
