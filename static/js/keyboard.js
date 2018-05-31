@@ -6,15 +6,15 @@ class Keyboard {
 
 	constructor(doc, character){
 		this.doc = doc;
-		this.move = moveFunc(1);
-		this.stop = moveFunc(0);
+		this.character = character;
+		this.move = this.moveFunc(1);
+		this.stop = this.moveFunc(0);
 		this.doc.addEventListener("keydown", this.move);
 		this.doc.addEventListener("keyup", this.stop);
-		this.char = character;
 	}
 
 	moveFunc(go){
-		let z = this.char;
+		const z = this.character;
 		const R = 0, L = 1, U = 2, D = 3;
 		const keys = ["d","a","w","s"];
 
