@@ -26,7 +26,7 @@ Class needs to be controllable from the keyboard and from code
 
 class Character {
 	constructor(img_matrix) {
-		this.img_mtrx = img_matrx;
+		this.img_mtrx = img_matrix;
 		this.x = 0;
 		this.y = 0;
 		this.xx = 0;
