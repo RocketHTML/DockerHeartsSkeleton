@@ -89,6 +89,7 @@ function draw(){
 	for (let pid of othersList){
 		let player = others[pid];
 		player.update();
+		player.timer += 1;
 		let img = player.image;
 		let x = player.x;
 		let y = player.y;
