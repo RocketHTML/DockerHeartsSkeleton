@@ -1,7 +1,15 @@
 ///////////////////////////////////
 /////// functions 
 /////////////////////////////////////////
-function deleteOther()  {}  /// on disconnect ///
+function deleteOther(other)  {
+	if (other.uid !== uid && other.timer >= 1000 * 1)
+	{
+		others[other.uid] = 0;
+		let x = othersList.indexOf(other.uid)
+		if (x > -1)
+			othersList.splice(x, 1);
+	}
+}
 function updateOthers(other) {
 //	console.log(other);
 	if (others[other.uid] === undefined)
@@ -9,6 +17,7 @@ function updateOthers(other) {
 		others[other.uid] = new Character(directions);
 		othersList.push(other.uid);
 		others[other.uid].timer = 0;
+		others[other.uid].uid = uid;
 	}
 	let zeno = others[other.uid];
 	if (other.uid !== uid)
@@ -17,13 +26,6 @@ function updateOthers(other) {
 		zeno.walking = other.isWalking;
 		zeno.xx = other.xx;
 		zeno.yy = other.yy;
-		if (zeno.timer >= 3600 * 8)
-		{
-			others[other.uid] = 0;
-			let x = othersList.indexOf(other.uid)
-			if (x > -1)
-				othersList.splice(x, 1);
-		}
 	}
 
 
@@ -86,7 +88,8 @@ function setup(){
 function draw(){
 	background(bg);
 	frames += 1;
-	for (let pid of othersList){
+	oListCopy = othersList.slice();
+	for (let pid of oListCopy){
 		let player = others[pid];
 		player.update();
 		player.timer += 1;
@@ -94,8 +97,8 @@ function draw(){
 		let x = player.x;
 		let y = player.y;
 		image(img, x, y);
+		deleteOther(player);
 	}
-	let me = others[uid];
 //	socket.emit("update", 
 //		{direction:me.direction,
 //		uid:uid, isWalking: me.isWalking,
