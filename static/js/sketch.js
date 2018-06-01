@@ -3,14 +3,22 @@
 /////////////////////////////////////////
 function deleteOther()  {}  /// on disconnect ///
 function updateOthers(other) {
+	console.log(other);
 	if (others[other.uid] === undefined)
 	{
 		others[other.uid] = new Character(directions);
 		othersList.push(other.uid);
 	}
 	let zeno = others[other.uid];
-	zeno.direction = other.direction;
-	zeno.walking = other.isWalking;
+	if (other.uid !== uid)
+	{
+		zeno.direction = other.direction;
+		zeno.walking = other.isWalking;
+		zeno.xx = other.xx;
+		zeno.yy = other.yy;
+	}
+
+
 }
 ////////////////////////////////////////
 
@@ -38,12 +46,15 @@ function preload() {
 ///////////////////////////////////////////
 /////////  create user's character ////////
 ///////////////////////////////////////////
+let frames = 0;
+let REFRESH = 600;
 let socket = io.connect('http://18.221.73.238');
 let uid = Date.now();
 let others = {};
 let othersList = [];
-others[uid] = new Character(directions);
-let zatch = others.[uid];
+//others[uid] = new Character(directions);
+updateOthers({uid:uid, isWalking:0, direction:3});
+let zatch = others[uid];
 socket.uid = uid;
 /////////////////////////////////////////////////////
 //// keyboard needs socket object to do emits. ///////
@@ -51,7 +62,7 @@ socket.uid = uid;
 let keyboard = new Keyboard(document, zatch, socket); 
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////
-socket.on('update', updateOthers(other))
+socket.on('update', updateOthers);
 /////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
 /////////   setup function ///////////
@@ -65,15 +76,21 @@ function setup(){
 ///////////////////////////////////////////////
 
 function draw(){
-	background(bg)
-	for (let other of othersList){
-		let player = others[other];
+	background(bg);
+	frames += 1;
+	for (let pid of othersList){
+		let player = others[pid];
 		player.update();
 		let img = player.image;
 		let x = player.x;
 		let y = player.y;
 		image(img, x, y);
 	}
+	let me = others[uid];
+	socket.emit("update", 
+		{direction:me.direction,
+		uid:uid, isWalking: me.isWalking,
+		xx:me.xx, yy:me.yy});
 /*
 	zatch.update();
 	let img = zatch.image;

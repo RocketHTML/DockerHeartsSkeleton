@@ -39,6 +39,9 @@ class Character {
 		this.isWalking = 0;
 	}
 
+	get direction(){
+		return this.cdir;
+	}
 	set direction(dir){
 		this.cdir = dir;
 	}

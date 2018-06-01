@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from flask_socketio import SocketIO, send, join_room, leave_room
+from flask_socketio import SocketIO, send, emit, join_room, leave_room
 
 #### the app doesn't scale ###
 ## but it scales more than enough for our purposes for now ## 
