@@ -8,6 +8,7 @@ function updateOthers(other) {
 	{
 		others[other.uid] = new Character(directions);
 		othersList.push(other.uid);
+		others[other.uid].timer = 0;
 	}
 	let zeno = others[other.uid];
 	if (other.uid !== uid)
@@ -16,6 +17,13 @@ function updateOthers(other) {
 		zeno.walking = other.isWalking;
 		zeno.xx = other.xx;
 		zeno.yy = other.yy;
+		if (zeno.timer >= 3600 * 8)
+		{
+			others[other.uid] = 0;
+			let x = othersList.indexOf(other.uid)
+			if (x > -1)
+				othersList.splice(x, 1);
+		}
 	}
 
 
