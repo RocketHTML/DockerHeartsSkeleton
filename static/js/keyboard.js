@@ -26,12 +26,12 @@ class Keyboard {
 				return;
 			z.direction = dir;
 			z.go();
-			//sock.emit("update", {direction:z.direction, uid:socket.uid, isWalking:1, x:z.x, y:z.y})
+			sock.emit("update", {direction:z.direction, uid:socket.uid, isWalking:1, xx:z.xx, yy:z.yy})
 		}
 
 		function stop(event){
 			z.stop();
-			//sock.emit("update", {direction:z.direction, uid:socket.uid, isWalking:0})
+			sock.emit("update", {direction:z.direction, uid:socket.uid, isWalking:0, xx:z.xx, yy:z.yy})
 		}
 
 		if (go === 1)

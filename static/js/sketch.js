@@ -3,7 +3,7 @@
 /////////////////////////////////////////
 function deleteOther()  {}  /// on disconnect ///
 function updateOthers(other) {
-	console.log(other);
+//	console.log(other);
 	if (others[other.uid] === undefined)
 	{
 		others[other.uid] = new Character(directions);
@@ -87,10 +87,10 @@ function draw(){
 		image(img, x, y);
 	}
 	let me = others[uid];
-	socket.emit("update", 
-		{direction:me.direction,
-		uid:uid, isWalking: me.isWalking,
-		xx:me.xx, yy:me.yy});
+//	socket.emit("update", 
+//		{direction:me.direction,
+//		uid:uid, isWalking: me.isWalking,
+//		xx:me.xx, yy:me.yy});
 /*
 	zatch.update();
 	let img = zatch.image;
