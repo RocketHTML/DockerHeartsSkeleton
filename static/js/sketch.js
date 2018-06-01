@@ -2,9 +2,9 @@
 /////// functions 
 /////////////////////////////////////////
 function deleteOther(other)  {
-	if (other.uid !== uid && other.timer >= 1000 * 1)
+	if (other.uid !== uid && other.timer >= 3600 * 8)
 	{
-		others[other.uid] = 0;
+		others[other.uid] = undefined;
 		let x = othersList.indexOf(other.uid)
 		if (x > -1)
 			othersList.splice(x, 1);
@@ -16,10 +16,10 @@ function updateOthers(other) {
 	{
 		others[other.uid] = new Character(directions);
 		othersList.push(other.uid);
-		others[other.uid].timer = 0;
 		others[other.uid].uid = other.uid;
 	}
 	let zeno = others[other.uid];
+	zeno.timer = 0;
 	if (other.uid !== uid)
 	{
 		zeno.direction = other.direction;
