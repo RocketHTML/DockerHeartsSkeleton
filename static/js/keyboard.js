@@ -4,8 +4,9 @@
 
 class Keyboard {
 
-	constructor(doc, character){
+	constructor(doc, character, socket){
 		this.doc = doc;
+		this.socket = socket;
 		this.character = character;
 		this.move = this.moveFunc(1);
 		this.stop = this.moveFunc(0);
@@ -15,6 +16,7 @@ class Keyboard {
 
 	moveFunc(go){
 		const z = this.character;
+		const soc = this.socket;
 		const R = 0, L = 1, U = 2, D = 3;
 		const keys = ["d","a","w","s"];
 
@@ -24,10 +26,12 @@ class Keyboard {
 				return;
 			z.direction = dir;
 			z.go();
+			sock.emit("update", {direction:z.direction, uid:socket.uid, isWalking:1})
 		}
 
 		function stop(event){
 			z.stop();
+			sock.emit("update", {direction:z.direction, uid:socket.uid, isWalking:0})
 		}
 
 		if (go === 1)

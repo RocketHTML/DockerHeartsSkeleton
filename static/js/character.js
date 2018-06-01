@@ -43,6 +43,10 @@ class Character {
 		this.cdir = dir;
 	}
 
+	set walking(num){
+		this.isWalking = num;
+	}
+
 	go(){
 		this.isWalking = 1;
 	}
