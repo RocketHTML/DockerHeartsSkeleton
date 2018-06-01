@@ -17,7 +17,7 @@ function updateOthers(other) {
 		others[other.uid] = new Character(directions);
 		othersList.push(other.uid);
 		others[other.uid].timer = 0;
-		others[other.uid].uid = uid;
+		others[other.uid].uid = other.uid;
 	}
 	let zeno = others[other.uid];
 	if (other.uid !== uid)
