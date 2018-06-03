@@ -1,0 +1,60 @@
+6/3/18 - practice absolute positioning
+	- absolute interface window
+		- chat
+		- canvas barrier
+		- file drop zone ***
+			- read filename and filecontents on backend
+		- giant canvas auto scroll
+
+/* 0. explanation */
+
+- absolute interface window 
+	- Interface: fixed size; always becomes the size of the screen
+		- holds various window divs for important elements
+			- Canvas: element within a fixed size interface-screen div
+			- Chat: list element within a fixed size interface-chat div
+			- File: on click, a scrollable window appears at mouseX, mouseY
+- create a main div
+	- canvas will add itself in sketch.js
+- create a screen article div:
+- create a chat aside div, with messages and input subdivs
+	- could use flex, but will practice absolute positioning
+
+-------------------------------------------------------------------------------------------
+Classes
+
+Interface Class: will be a div
+	uid:		to drop or collect files; to create appropriate file windows
+	room:		to mark files
+	health: 	may draw health bar - perhaps you get deleted when dead
+	collection: array of file objects
+	theme:		color or image background
+	div: 		so color and theme is user-customizable
+	height: 	automatic
+	width:		automatic
+
+	Div.addEventListener(show_file_window): uses mouseX mouseY
+		show file window
+			either read the file or show empty window
+				*    - readonly
+				**   - write
+				***  - read and write
+				**** - all cases
+				read -  determine if file exists at mouse click; room global file array
+				collect*
+				drop**
+				update***
+				delete***
+				close****
+
+
+File Class: also a div. may be apart of Interface Class
+	uid:
+	text:
+	x:
+	y:
+	room:
+	div:
+	img:
+	show()
+	hide()
