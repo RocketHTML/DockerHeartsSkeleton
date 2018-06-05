@@ -33,6 +33,6 @@ function draw(){
 		let x = player.x;
 		let y = player.y;
 		image(img, x, y);
-		deleteOther(player);
+		home.deleteOther(player);
 	}
 }

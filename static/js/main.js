@@ -24,7 +24,10 @@ class Home {
 		return function(other) {
 			if (homie.others[other.uid] === undefined)
 			{
-				homie.others[other.uid] = new Character(homie.directions);
+				if (other.uid === homie.uid)
+					homie.others[homie.uid] = homie.character
+				else
+					homie.others[other.uid] = new Character(homie);
 				homie.othersList.push(other.uid);
 				homie.others[other.uid].uid = other.uid;
 			}
@@ -42,12 +45,12 @@ class Home {
 	}
 
 	deleteOther(other)  {
-		if (other.uid !== home.uid && other.timer >= 3600 * 8)
+		if (other.uid !== this.uid && other.timer >= 3600 * 8)
 		{
-			home.others[other.uid] = undefined;
-			let x = home.othersList.indexOf(other.uid)
+			this.others[other.uid] = undefined;
+			let x = this.othersList.indexOf(other.uid)
 			if (x > -1)
-				home.othersList.splice(x, 1);
+				this.othersList.splice(x, 1);
 		}
 	}
 }
@@ -186,6 +189,7 @@ class Room extends View {
 	reentry(){
 		this.character = new Character(this.home)
 		this.keyboard = new Keyboard(this.character)
+		this.home.character = this.character
 		this.home.update({uid:this.home.uid, isWalking:0, direction:3,
 				xx:0, yy:0});
 	}
