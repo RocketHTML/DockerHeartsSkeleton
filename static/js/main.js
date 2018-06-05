@@ -5,6 +5,7 @@ class Home {
 		this.others 	= [];
 		this.othersList = [];
 		this.socket 	= {};
+		this.socket.disconnect = () => {};
 		this.directions = [[], [], [], []];
 	}
 
@@ -56,7 +57,7 @@ class Navbar {
 		this.loginButton = document.createElement("button")
 		this.loginButton.addEventListener("click", this.login)
 		let gameboy = document.getElementById("gameboy")
-		let gameboy.appendChild(this.div)
+		gameboy.appendChild(this.div)
 	}
 
 	login(){
@@ -71,7 +72,7 @@ class View {
 		this.home.views.push(this);
 		this.div = document.createElement("div");
 		let gameboy = document.getElementById("gameboy");
-		let gameboy.appendChild(this.div);
+		gameboy.appendChild(this.div);
 	}
 
 	hide(){
@@ -152,15 +153,16 @@ class Interface {
 		this.div = document.createElement("div")
 		this.chatdiv = document.createElement("div")
 		this.canvasdiv = document.createElement("div")
-		this.div.appendChild(canvasdiv)
-		this.div.appendChild(chatdiv)
+		this.canvasdiv.setAttribute("id", "canvasdiv")
+		this.div.appendChild(this.canvasdiv)
+		this.div.appendChild(this.chatdiv)
 	}
 }
 
 class Room extends View {
-	constructor(home, interface){
+	constructor(home, uinterface){
 		super(home)
-		this.interface 	= interface
+		this.interface 	= uinterface
 		this.div.appendChild(this.interface.div)
 		this.character 	= undefined
 		this.keyboard  	= undefined
@@ -194,8 +196,8 @@ let home 		= new Home();
 let navbar 		= new Navbar(home);
 let login 		= new Login(home);
 let lobby 		= new Lobby(home);
-let interface 	= new Interface();
-let room 		= new Room(home, interface);
+let uinterface 	= new Interface();
+let room 		= new Room(home, uinterface);
 
 
 
