@@ -127,7 +127,7 @@ class Login extends View {
 		let alterego = this.alterInput
 		let homie = this.home
 
-		return function {
+		return function() {
 			if (username.value === "" || alterego.value === "")
 				return
 			else {
@@ -181,7 +181,7 @@ class Room extends View {
 		// turn off keyboard
 	reentry(){
 		this.character = new Character(home.directions)
-		this.keyboard = new Keyboard(this.character)
+		this.keyboard = new Keyboard(this.character, this.home.socket)
 	}
 }
 

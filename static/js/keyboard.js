@@ -4,8 +4,8 @@
 
 class Keyboard {
 
-	constructor(doc, character, socket){
-		this.doc = doc;
+	constructor(character, socket){
+		this.doc = document;
 		this.socket = socket;
 		this.character = character;
 		this.move = this.moveFunc(1);
