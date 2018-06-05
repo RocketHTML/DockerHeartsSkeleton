@@ -1,4 +1,4 @@
-Home class {
+class Home {
 	constructor(){
 		this.uid 		= undefined;
 		this.views  	= [];
@@ -47,7 +47,7 @@ Home class {
 	}
 }
 
-Navbar class {
+class Navbar {
 	constructor(home){
 		this.home = home
 		this.div = document.createElement("div")
@@ -64,7 +64,7 @@ Navbar class {
 	}
 }
 
-View class {
+class View {
 	// resize, later
 	constructor(home){
 		this.home = home;
@@ -90,7 +90,7 @@ View class {
 	}
 }
 
-Login class extends View {
+class Login extends View {
 	constructor(home){
 		super(home)
 		this.usernameBox = document.createElement("div")
@@ -141,13 +141,13 @@ Login class extends View {
 
 }
 
-Lobby class extends View {
+class Lobby extends View {
 	constructor(home){
 		super(home)
 	}
 }
 
-Interface class {
+class Interface {
 	constructor(){
 		this.div = document.createElement("div")
 		this.chatdiv = document.createElement("div")
@@ -157,7 +157,7 @@ Interface class {
 	}
 }
 
-Room class extends View {
+class Room extends View {
 	constructor(home, interface){
 		super(home)
 		this.interface 	= interface

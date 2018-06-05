@@ -34,3 +34,4 @@ function draw(){
 		image(img, x, y);
 		deleteOther(player);
 	}
+}
