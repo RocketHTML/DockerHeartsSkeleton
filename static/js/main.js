@@ -7,11 +7,12 @@ class Home {
 		this.socket 	= {};
 		this.socket.disconnect = () => {};
 		this.directions = [[], [], [], []];
+		this.update = this.updateOthers();
 	}
 
 	connectSocket(){
 		this.socket = io.connect('http://18.221.73.238')
-		this.socket.on("update", this.updateOthers())
+		this.socket.on("update", this.update)
 	}
 
 	disconnectSocket(){
@@ -19,7 +20,7 @@ class Home {
 	}
 
 	updateOthers(){
-			homie = this;
+			let homie = this;
 		return function(other) {
 			if (homie.others[other.uid] === undefined)
 			{
@@ -29,7 +30,7 @@ class Home {
 			}
 			let zeno = homie.others[other.uid]; // character should timer up automatically
 			zeno.timer = 0;
-			if (other.uid !== uid)
+			if (other.uid !== homie.uid)
 			{
 				zeno.direction = other.direction;
 				zeno.walking = other.isWalking;
@@ -185,6 +186,8 @@ class Room extends View {
 	reentry(){
 		this.character = new Character(this.home)
 		this.keyboard = new Keyboard(this.character)
+		this.home.update({uid:this.home.uid, isWalking:0, direction:3,
+				xx:0, yy:0});
 	}
 }
 

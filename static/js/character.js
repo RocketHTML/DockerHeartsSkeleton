@@ -25,9 +25,9 @@ Class needs to be controllable from the keyboard and from code
 */
 
 class Character {
-	constructor(home) {
-		this.home = home;
-		this.img_mtrx = home.directions;
+	constructor(h) {
+		this.home = h;
+		this.img_mtrx = h.directions;
 		this.x = 0;
 		this.y = 0;
 		this.xx = 0;
@@ -39,7 +39,6 @@ class Character {
 		this.walkSpeed = 10;
 		this.isWalking = 0;
 
-		this.home.updateOthers()({uid:uid, isWalking:0, direction:3});
 	}
 
 	get direction(){
