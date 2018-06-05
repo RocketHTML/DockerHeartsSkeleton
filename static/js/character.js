@@ -38,6 +38,8 @@ class Character {
 		this.slow = 4;
 		this.walkSpeed = 10;
 		this.isWalking = 0;
+
+		this.home.updateOthers()({uid:uid, isWalking:0, direction:3});
 	}
 
 	get direction(){

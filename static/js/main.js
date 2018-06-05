@@ -2,7 +2,7 @@ class Home {
 	constructor(){
 		this.uid 		= undefined;
 		this.views  	= [];
-		this.others 	= [];
+		this.others 	= {};
 		this.othersList = [];
 		this.socket 	= {};
 		this.socket.disconnect = () => {};
@@ -11,28 +11,31 @@ class Home {
 
 	connectSocket(){
 		this.socket = io.connect('http://18.221.73.238')
-		this.socket.on("update", this.updateOthers)
+		this.socket.on("update", this.updateOthers())
 	}
 
 	disconnectSocket(){
 		this.socket.disconnect()
 	}
 
-	updateOthers(other){
-		if (this.others[other.uid] === undefined)
-		{
-			this.others[other.uid] = new Character(this.directions);
-			this.othersList.push(other.uid);
-			this.others[other.uid].uid = other.uid;
-		}
-		let zeno = this.others[other.uid]; // character should timer up automatically
-		zeno.timer = 0;
-		if (other.uid !== uid)
-		{
-			zeno.direction = other.direction;
-			zeno.walking = other.isWalking;
-			zeno.xx = other.xx;
-			zeno.yy = other.yy;
+	updateOthers(){
+			homie = this;
+		return function(other) {
+			if (homie.others[other.uid] === undefined)
+			{
+				homie.others[other.uid] = new Character(homie.directions);
+				homie.othersList.push(other.uid);
+				homie.others[other.uid].uid = other.uid;
+			}
+			let zeno = homie.others[other.uid]; // character should timer up automatically
+			zeno.timer = 0;
+			if (other.uid !== uid)
+			{
+				zeno.direction = other.direction;
+				zeno.walking = other.isWalking;
+				zeno.xx = other.xx;
+				zeno.yy = other.yy;
+			}
 		}
 
 	}
@@ -180,7 +183,7 @@ class Room extends View {
 	// maybe just change room to lobby
 		// turn off keyboard
 	reentry(){
-		this.character = new Character(home)
+		this.character = new Character(this.home)
 		this.keyboard = new Keyboard(this.character)
 	}
 }
