@@ -55,13 +55,16 @@ class Navbar {
 		this.div.style.display = "block"
 		this.div.style.height = "100px"
 		this.loginButton = document.createElement("button")
-		this.loginButton.addEventListener("click", this.login)
+		this.loginButton.addEventListener("click", this.login())
 		let gameboy = document.getElementById("gameboy")
 		gameboy.appendChild(this.div)
 	}
 
 	login(){
-		this.home.views[0].display()
+		let homie = this.home;
+		return function(){
+			homie.views[0].display()
+		}
 	}
 }
 
@@ -116,20 +119,24 @@ class Login extends View {
 		this.submitText	 = document.createTextNode("Enter")
 		this.submitButton.appendChild(this.submitText)
 		this.div.appendChild(this.submitButton)
-		this.submitButton.addEventListener("click", this.submit)
+		this.submitButton.addEventListener("click", this.submit())
 	}
 
 	submit() {
-		let username = this.userInput.value
-		let alterego = this.alterInput.value
-		if (username === "" || alterego === "")
-			return
-		else {
-			this.home.uid = username + '/' + Date.now()
-			this.home.username = username
-			this.home.alterego = alterego
-			this.home.connectSocket();
-			this.home.views[2].display()
+		let username = this.userInput
+		let alterego = this.alterInput
+		let homie = this.home
+
+		return function {
+			if (username.value === "" || alterego.value === "")
+				return
+			else {
+				homie.uid = username.value + '/' + Date.now()
+				homie.username = username.value
+				homie.alterego = alterego.value
+				homie.connectSocket();
+				homie.views[2].display()
+			}
 		}
 
 	}
