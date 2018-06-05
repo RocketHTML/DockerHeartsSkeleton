@@ -165,9 +165,17 @@ class Lobby extends View {
 class Interface {
 	constructor(){
 		this.div = document.createElement("div")
-		this.chatdiv = document.createElement("div")
 		this.canvasdiv = document.createElement("div")
 		this.canvasdiv.setAttribute("id", "canvasdiv")
+		this.canvasdiv.style.left = "0"
+		this.canvasdiv.width = 200
+
+		this.chatdiv = document.createElement("div")
+		this.chatdiv.setAttribute("id", "chatdiv")
+		this.chatdiv.style.left = "100px"
+		this.chatdiv.style.border = "solid 1px red"
+		this.chatdiv.width = 100
+
 		this.div.appendChild(this.canvasdiv)
 		this.div.appendChild(this.chatdiv)
 	}
