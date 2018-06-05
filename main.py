@@ -13,7 +13,7 @@ rooms = {}
 @socketio.on('message')
 def handleMessage(msg):
 	# send coordinates
-	send("hello", broadcast=True)
+	send(msg, broadcast=True)
 
 @socketio.on('update')
 def update(character):
