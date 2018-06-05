@@ -4,10 +4,11 @@
 
 class Keyboard {
 
-	constructor(character, socket){
+	constructor(character){
 		this.doc = document;
-		this.socket = socket;
 		this.character = character;
+		this.home = character.home;
+		this.socket = this.home.socket;
 		this.move = this.moveFunc(1);
 		this.stop = this.moveFunc(0);
 		this.doc.addEventListener("keydown", this.move);
@@ -26,12 +27,12 @@ class Keyboard {
 				return;
 			z.direction = dir;
 			z.go();
-			sock.emit("update", {direction:z.direction, uid:socket.uid, isWalking:1, xx:z.xx, yy:z.yy})
+			sock.emit("update", {direction:z.direction, uid:sock.uid, isWalking:1, xx:z.xx, yy:z.yy})
 		}
 
 		function stop(event){
 			z.stop();
-			sock.emit("update", {direction:z.direction, uid:socket.uid, isWalking:0, xx:z.xx, yy:z.yy})
+			sock.emit("update", {direction:z.direction, uid:sock.uid, isWalking:0, xx:z.xx, yy:z.yy})
 		}
 
 		if (go === 1)

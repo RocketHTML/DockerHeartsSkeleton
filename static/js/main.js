@@ -180,8 +180,8 @@ class Room extends View {
 	// maybe just change room to lobby
 		// turn off keyboard
 	reentry(){
-		this.character = new Character(home.directions)
-		this.keyboard = new Keyboard(this.character, this.home.socket)
+		this.character = new Character(home)
+		this.keyboard = new Keyboard(this.character)
 	}
 }
 
