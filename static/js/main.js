@@ -167,14 +167,17 @@ class Interface {
 		this.div = document.createElement("div")
 		this.canvasdiv = document.createElement("div")
 		this.canvasdiv.setAttribute("id", "canvasdiv")
+		this.canvasdiv.style.position = "absolute"
 		this.canvasdiv.style.left = "0"
-		this.canvasdiv.width = 200
+		this.canvasdiv.width = 100
 
 		this.chatdiv = document.createElement("div")
 		this.chatdiv.setAttribute("id", "chatdiv")
+		this.chatdiv.style.position = "absolute"
 		this.chatdiv.style.left = "100px"
 		this.chatdiv.style.border = "solid 1px red"
 		this.chatdiv.width = 100
+		this.chatdiv.height = 300
 
 		this.div.appendChild(this.canvasdiv)
 		this.div.appendChild(this.chatdiv)
