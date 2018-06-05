@@ -108,9 +108,9 @@ Home class variables
 	views 		= (home.main) view0(), view1(), view2()
 	width 		= (home.main) window.width 
 	height		= (home.main) window.height 
-	logindiv	= (home.main)
-	lobbydiv	= (home.main)
-	roomdiv 	= (home.main)
+	logindiv	= (home.main) *in view*
+	lobbydiv	= (home.main) *in view*
+	roomdiv 	= (home.main) *in view*
 
 	imgcube		= (home.main -> sketch.preload)
 	canvas 		= (home.main -> sketch.setup)
