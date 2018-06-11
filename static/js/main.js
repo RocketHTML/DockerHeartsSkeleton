@@ -169,6 +169,9 @@ class Interface {
 		this.home = home
 		this.div = document.createElement("div")
 		this.canvasdiv = document.createElement("div")
+		this.instructions = document.createElement("p")
+		this.instructions.innerHTML = "a, w, s, d, to move"
+		this.div.appendChild(this.instructions)
 		this.canvasdiv.setAttribute("id", "canvasdiv")
 		this.canvasdiv.style.position = "absolute"
 		this.canvasdiv.style.left = "0"
