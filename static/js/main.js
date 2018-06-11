@@ -232,10 +232,12 @@ class Room extends View {
 
 	// might need an exit() function -  to send delete signal
 	// maybe just change room to lobby
-		// turn off keyboard
+		// turn off keyboard and notepad listeners
+		// or try to make them more singular
 	reentry(){
-		this.character = new Character(this.home)
-		this.keyboard = new Keyboard(this.character)
+		this.character 	= new Character(this.home)
+		this.keyboard 	= new Keyboard(this.character)
+		this.notepad 	= new Notepad(this.character)
 		this.home.character = this.character
 		this.home.socket.on("message", this.interface.appendMessage())
 		this.home.update({uid:this.home.uid, isWalking:0, direction:3,
