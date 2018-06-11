@@ -44,6 +44,7 @@ class Notepad {
 		notepad = this
 		pad 	= this.div
 		return function(){
+			console.log("clicked")
 			if (notepad.open){
 				notepad.open = false
 				pad.style.display = "none"
