@@ -1,0 +1,42 @@
+touch Dockerfile
+docker build . - builds an image
+docker rm [id | name of container]
+docker run --name test <id of image>
+docker run -it --rm [distribution] [command]
+docker stop [id | name of container]
+docker kill [id | name of container]
+docker ps [options]
+docker images
+docker rm $(docker ps -aq)
+	- give all container ids
+docker cp <name>:<path> <hostpath>  - copy file from container to host
+---------------------------------------------
+Dockerfile
+
+FROM alpine
+
+CMD ["echo", "hello world"] - runs a command on run
+
+COPY script.sh /script.sh  - copies file into container
+CMD ["/script.sh"]
+
+---------------------------------------------
+
+containers can have 
+	names
+	ids
+
+when pid 1 exists, the whole container exits
+ctrl-C doesn't work on pid 1
+so you must stop the container from outside
+
+---------------------------------------------
+script files to put into alpine 
+
+#! /bin/sh
+echo hellow world, from a script file!
+
+<chmod u+x>
+---------------------------------------------
+
+Next Tweet: Externalizing yourself
