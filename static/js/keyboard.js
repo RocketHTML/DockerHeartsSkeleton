@@ -20,8 +20,11 @@ class Keyboard {
 		const sock = this.socket;
 		const R = 0, L = 1, U = 2, D = 3;
 		const keys = ["d","a","w","s"];
+		const doc = this.doc
 
 		function move(event){
+			if (doc.activeElement.tagName !== "BODY")
+				return;
 			let dir = keys.indexOf(event.key);
 			if (dir === -1)
 				return;
