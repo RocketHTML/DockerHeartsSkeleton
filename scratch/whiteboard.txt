@@ -305,3 +305,14 @@ minimap(roomID, X, Y, W, H)
 	uses others dictionary + others list + roomID
 
 	minimap buffer must be captured
+
+-------------------------------------------------------
+dropping and collecting files
+
+soc.emit("drop", {text: text.value,
+                  uid: homie.uid,
+                  username: homie.username,
+                  alterego: homie.alterego,
+                  x:notepad.left,
+                  y:notepad.y})
+

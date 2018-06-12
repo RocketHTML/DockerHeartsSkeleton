@@ -34,21 +34,12 @@ class Notepad {
 		this.textarea.style.width = this.div.style.width
 		this.div.appendChild(this.textarea)
 
-		this.dropbtn		= document.createElement("button")
-		this.dropbtn.innerHTML = "drop"
-		this.dropbtn.style.display = "none"
-		this.div.appendChild(this.dropbtn)
+		this.dropbtn		= this.makeButton("drop")
 		this.dropbtn.addEventListener("click", this.dropFile())
 
-		this.collectbtn		= document.createElement("button")
-		this.collectbtn.innerHTML = "collect"
-		this.collectbtn.style.display = "none"
-		this.div.appendChild(this.collectbtn)
+		this.collectbtn		= this.makeButton("collect")
 
-		this.editbtn		= document.createElement("button")
-		this.editbtn.innerHTML  = "edit"
-		this.editbtn.style.display = "none"
-		this.div.appendChild(this.editbtn)
+		this.editbtn		= this.makeButton("edit")
 		this.editbtn.addEventListener("click", this.editFile())
 
 		this.open = false
@@ -56,6 +47,20 @@ class Notepad {
 
 		this.toggle = this.makeToggle()
 		this.canvasdiv.addEventListener("click", this.toggle)
+	}
+
+	makeButton(string){
+		let ele = document.createElement("button")
+		ele.innerHTML = string
+		ele.style.display = "none"
+		this.div.appendChild(ele)
+		return ele
+	}
+
+	makeToggle2(){
+		return function(clickevent){
+			var element = clickevent.target
+		}
 	}
 
 	makeToggle(){
@@ -70,11 +75,9 @@ class Notepad {
 		let collect	= this.collectbtn
 		let homie	= this.home
 		return function(){
-			drop.style.display = "none"
-			edit.style.display = "none"
-			collect.style.display = "none"
 			if (notepad.open){
 				let active = document.activeElement.tagName
+				console.log(active)
 				if (active !== "TEXTAREA"){
 					notepad.open = false
 					homie.selectedfile = undefined
@@ -82,6 +85,10 @@ class Notepad {
 				}
 			}
 			else {
+				drop.style.display = "none"
+				edit.style.display = "none"
+				collect.style.display = "none"
+
 				notepad.open = true
 				notepad.left = mouseX
 				notepad.top = mouseY
