@@ -166,12 +166,11 @@ class Notepad {
 	editFile(){
 		let soc = this.socket
 		let homie = this.home
-		let sfile = homie.selectedfile
 		let chr = this.character
 		let text = this.textarea
 		let notepad = this
 		return function(){
-			let key = sfile.key
+			let key = homie.selectedfile.key
 			soc.emit("drop", {text: text.value, 
 					  uid: homie.uid,
 					  username: homie.username,
