@@ -286,5 +286,8 @@ let room 		= new Room(home, uinterface);
 // ------------------------------------------------------------
 
 login.display();
+setInterval(function(){
+	console.log(home.selectedfile)
+}, 2000)
 
 

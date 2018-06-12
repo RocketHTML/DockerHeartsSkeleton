@@ -49,6 +49,7 @@ class Notepad {
 		this.editbtn.innerHTML  = "edit"
 		this.editbtn.style.display = "none"
 		this.div.appendChild(this.editbtn)
+		this.editbtn.addEventListener("click", this.editFile())
 
 		this.open = false
 		this.file = undefined
@@ -156,5 +157,24 @@ class Notepad {
 		char = this.character
 		text = this.textarea
 		return function(){}
+	}
+
+	editFile(){
+		let soc = this.socket
+		let homie = this.home
+		let sfile = homie.selectedfile
+		let chr = this.character
+		let text = this.textarea
+		let notepad = this
+		return function(){
+			let key = sfile.key
+			soc.emit("drop", {text: text.value, 
+					  uid: homie.uid,
+					  username: homie.username,
+					  alterego: homie.alterego,
+					  x:sfile.x, 
+					  y:sfile.y,
+					  key:key})
+		}
 	}
 }
