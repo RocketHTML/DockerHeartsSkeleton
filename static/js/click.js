@@ -171,6 +171,7 @@ class Notepad {
 		let notepad = this
 		return function(){
 			let key = homie.selectedfile.key
+			let sfile = homie.selectedfile
 			soc.emit("drop", {text: text.value, 
 					  uid: homie.uid,
 					  username: homie.username,
