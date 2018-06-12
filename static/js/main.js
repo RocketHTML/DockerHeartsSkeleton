@@ -6,6 +6,7 @@ class Home {
 		this.views  	= [];
 		this.others 	= {};
 		this.othersList = [];
+		this.files	= {};
 		this.socket 	= {};
 		this.socket.disconnect = () => {};
 		this.directions = [[], [], [], []];
@@ -15,6 +16,7 @@ class Home {
 	connectSocket(){
 		this.socket = io.connect('http://18.221.73.238')
 		this.socket.on("update", this.update)
+		this.socket.on("drop", this.drop())
 	}
 
 	disconnectSocket(){
@@ -53,6 +55,13 @@ class Home {
 			let x = this.othersList.indexOf(other.uid)
 			if (x > -1)
 				this.othersList.splice(x, 1);
+		}
+	}
+
+	drop(){
+		let homie = this
+		return function(newfile){
+			homie.files[newfile.key] = newfile
 		}
 	}
 }

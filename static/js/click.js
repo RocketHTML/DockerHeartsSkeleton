@@ -37,6 +37,9 @@ class Notepad {
 		this.dropbtn.innerHTML = "drop"
 		this.dropbtn.style.display = "none"
 		this.div.appendChild(this.dropbtn)
+
+		this.dropbtn.addEventListener("click", this.dropFile())
+
 		this.collectbtn		= document.createElement("button")
 		this.collectbtn.style.display = "none"
 		this.div.appendChild(this.collectbtn)
@@ -86,17 +89,21 @@ class Notepad {
 
 	}
 
-	sendFile(){
-		soc = this.socket
-		homie = this.home
-		char = this.character
-		text = this.textarea
+	dropFile(){
+		let soc = this.socket
+		let homie = this.home
+		let chr = this.character
+		let text = this.textarea
+		let notepad = this
 		return function(){
+			let key = notepad.left +'.'+notepad.top
 			soc.emit("drop", {text: text.value, 
-							  uid: homie.uid,
-							  username: homie.username,
-							  alterego: homie.alterego,
-							  x:char.x, y:char.y})
+					  uid: homie.uid,
+					  username: homie.username,
+					  alterego: homie.alterego,
+					  x:notepad.left, 
+					  y:notepad.top,
+					  key:key})
 		}
 	}
 

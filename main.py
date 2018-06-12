@@ -7,8 +7,7 @@ from flask_socketio import SocketIO, send, emit, join_room, leave_room
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'unicorn'
 socketio = SocketIO(app)
-clients = {}
-rooms = {}
+files = {}
 
 @socketio.on('message')
 def handleMessage(msg):
@@ -17,6 +16,12 @@ def handleMessage(msg):
 @socketio.on('update')
 def update(character):
 	emit("update", character, broadcast=True)
+
+@socketio.on('drop')
+def drop(filedict):
+	files[filedict['key']] = filedict
+	# check if malicious
+	emit("drop", filedict, broadcast=True)
 
 @app.route('/')
 def index():

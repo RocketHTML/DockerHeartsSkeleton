@@ -24,6 +24,11 @@ function setup(){
 
 function draw(){
 	background(bg);
+	stroke(0);
+	fill(150);
+	for (let [key, value] of Object.entries(home.files)){
+		rect(value.x, value.y, 10, 20);
+	}
 	let oListCopy = home.othersList.slice();
 	for (let pid of oListCopy){
 		let player = home.others[pid];
