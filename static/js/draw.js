@@ -27,7 +27,10 @@ function draw(){
 	stroke(0);
 	fill(150);
 	for (let [key, value] of Object.entries(home.files)){
-		rect(value.x, value.y, 10, 20);
+		if(home.selectedfile !== undefined && home.selectedfile === value)
+			stroke(255)
+		else stroke(0)
+		rect(value.x, value.y, 10, 15);
 	}
 	let oListCopy = home.othersList.slice();
 	for (let pid of oListCopy){

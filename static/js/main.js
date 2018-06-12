@@ -7,10 +7,11 @@ class Home {
 		this.others 	= {};
 		this.othersList = [];
 		this.files	= {};
-		this.socket 	= {};
-		this.socket.disconnect = () => {};
-		this.directions = [[], [], [], []];
-		this.update = this.updateOthers();
+		this.selectedfile	= undefined;
+		this.socket 		= {};
+		this.socket.disconnect 	= () => {};
+		this.directions 	= [[], [], [], []];
+		this.update 		= this.updateOthers();
 	}
 
 	connectSocket(){

@@ -33,18 +33,22 @@ class Notepad {
 		this.textarea.style.height = (this.height - 25) + "px"
 		this.textarea.style.width = this.div.style.width
 		this.div.appendChild(this.textarea)
+
 		this.dropbtn		= document.createElement("button")
 		this.dropbtn.innerHTML = "drop"
 		this.dropbtn.style.display = "none"
 		this.div.appendChild(this.dropbtn)
-
 		this.dropbtn.addEventListener("click", this.dropFile())
 
 		this.collectbtn		= document.createElement("button")
+		this.collectbtn.innerHTML = "collect"
 		this.collectbtn.style.display = "none"
 		this.div.appendChild(this.collectbtn)
+
 		this.editbtn		= document.createElement("button")
-		this.closebtn		= document.createElement("button")
+		this.editbtn.innerHTML  = "edit"
+		this.editbtn.style.display = "none"
+		this.div.appendChild(this.editbtn)
 
 		this.open = false
 		this.file = undefined
@@ -59,13 +63,20 @@ class Notepad {
 		let notepad 	= this
 		let pad		= this.div
 		let text	= this.textarea
-		let checkFile	= function(){return false}
+		let check	= this.checkFile()
 		let drop	= this.dropbtn
+		let edit	= this.editbtn
+		let collect	= this.collectbtn
+		let homie	= this.home
 		return function(){
+			drop.style.display = "none"
+			edit.style.display = "none"
+			collect.style.display = "none"
 			if (notepad.open){
 				let active = document.activeElement.tagName
 				if (active !== "TEXTAREA"){
 					notepad.open = false
+					homie.selectedfile = undefined
 					pad.style.display = "none"
 				}
 			}
@@ -77,7 +88,16 @@ class Notepad {
 				pad.style.top = notepad.top
 				pad.style.display = "block"
 				text.focus()
-				if (checkFile()){
+				if (check()){
+					let uid = homie.selectedfile.uid
+					text.value = homie.selectedfile.text
+					if(homie.uid === uid){
+						edit.style.display = "inline-block"
+					}
+					else{
+						collect.style.display = "inline-block"
+					}
+					
 				}
 				else{
 					drop.style.display = "inline-block"
@@ -104,6 +124,27 @@ class Notepad {
 					  x:notepad.left, 
 					  y:notepad.top,
 					  key:key})
+		}
+	}
+
+	checkFile(){
+		let notepad = this
+		let homie = this.home
+		return function() {
+			for (let [key, value] of Object.entries(homie.files)){
+				let lt = value.x
+				let rt = value.x + 10
+				let tp = value.y
+				let bt = value.y + 15
+				let l = notepad.left
+				let t = notepad.top
+				if ((l > lt) && (l < rt) && (t > tp) && (t < bt)){
+					homie.selectedfile = value
+					return true
+				}
+			}
+			homie.selectedfile = undefined
+			return false
 		}
 	}
 
