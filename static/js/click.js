@@ -57,11 +57,6 @@ class Notepad {
 		return ele
 	}
 
-	makeToggle2(){
-		return function(clickevent){
-			var element = clickevent.target
-		}
-	}
 
 	makeToggle(){
 		// decides what value is in textarea
@@ -80,8 +75,9 @@ class Notepad {
 				console.log(active)
 				if (active !== "TEXTAREA"){
 					notepad.open = false
-					homie.selectedfile = undefined
 					pad.style.display = "none"
+					if (active !== "BUTTON")
+						homie.selectedfile = undefined
 				}
 			}
 			else {
@@ -132,6 +128,7 @@ class Notepad {
 					  x:notepad.left, 
 					  y:notepad.top,
 					  key:key})
+			homie.selectedfile = undefined
 		}
 	}
 
@@ -182,6 +179,7 @@ class Notepad {
 					  x:sfile.x, 
 					  y:sfile.y,
 					  key:key})
+			homie.selectedfile = undefined
 		}
 	}
 }
