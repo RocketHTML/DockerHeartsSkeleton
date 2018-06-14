@@ -315,4 +315,60 @@ soc.emit("drop", {text: text.value,
                   alterego: homie.alterego,
                   x:notepad.left,
                   y:notepad.y})
+------------------------------------------------------
+Talk Points
 
+Front end with docker 
+	- dealing with a lot of traffic
+	- making clones of your website
+	- clones of the database connection
+	- each clone handles a set of users
+		- but reloads from the same data source
+
+Socket Technology 
+
+Scaling 
+	- Socket connections 
+	- docker test feature (multiprocesses or docker service cluster)
+
+
+	---------------------------------------------------
+
+	Things To Do
+
+	setup an alpine image / container
+	on collect, run code inside container
+		try to extract heart file
+			determine if fail or successaAa
+	reset container after every collect
+--------------------------------------------------------
+Docker Py notes
+
+Manual: https://docker-py.readthedocs.io/en/stable/containers.html
+
+Example:
+>>> import docker
+>>> client = docker.from_env()
+>>> client.containers.run('alpine', 'echo hello world')
+b'hello world\n'
+
+Parameters:
+		image(str)
+		command(str or list)
+		hostname(str) - optional host name - unneeded
+		entrypoint(str)
+		mem_limit(int) - limit mem usage
+		volumes(dict or list)
+		working_dir(str)
+
+Setup:
+	Empty Volume ready on host
+	Const variables to pass into container run
+		mount hostpath and containerpath
+		hostname, entrypoint, mem_limit, working_dir
+
+Function Runtime:
+	Put heart in volume
+	run container with given string
+	test for heart file, set deadalive boolean
+	return output to socket, broadcast deadalive boolean
