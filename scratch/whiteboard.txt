@@ -354,12 +354,22 @@ b'hello world\n'
 
 Parameters:
 		image(str)
+			alpine 
 		command(str or list)
-		hostname(str) - optional host name - unneeded
+			string from user
 		entrypoint(str)
+			dockerland
 		mem_limit(int) - limit mem usage
+			100m
+		remove
+			true
 		volumes(dict or list)
+			{
+				'./dockerland': 
+					{'bind': '/dockerland', 'mode': 'rw'}
+			}
 		working_dir(str)
+			dockerland
 
 Setup:
 	Empty Volume ready on host
