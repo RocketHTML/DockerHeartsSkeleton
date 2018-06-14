@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from flask_socketio import SocketIO, send, emit, join_room, leave_room
+import dock
 
 #### the app doesn't scale ###
 ## but it scales more than enough for our purposes for now ## 
@@ -8,6 +9,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'unicorn'
 socketio = SocketIO(app)
 files = {}
+characters = {}
 
 @socketio.on('message')
 def handleMessage(msg):
@@ -22,6 +24,11 @@ def drop(filedict):
 	files[filedict['key']] = filedict
 	# check if malicious
 	emit("drop", filedict, broadcast=True)
+
+@socketio.on('collect')
+def collect(keydict):
+	res = dock.run(files[keydict['key']])
+	
 
 @app.route('/')
 def index():
