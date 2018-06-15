@@ -357,8 +357,7 @@ Parameters:
 			alpine 
 		command(str or list)
 			string from user
-		entrypoint(str)
-			dockerland
+
 		mem_limit(int) - limit mem usage
 			100m
 		remove
@@ -369,7 +368,7 @@ Parameters:
 					{'bind': '/dockerland', 'mode': 'rw'}
 			}
 		working_dir(str)
-			dockerland
+			/dockerland
 
 Setup:
 	Empty Volume ready on host
@@ -382,3 +381,20 @@ Function Runtime:
 	run container with given string
 	test for heart file, set deadalive boolean
 	return output to socket, broadcast deadalive boolean
+
+Frontend Runtime:
+	Collect sets out a keydict
+		uid 
+		fileid
+	backend updates character
+		uid
+		healthy or dead
+	backend emits update character
+
+	front end must draw character accordingly
+		draw healthy character 1 way
+		draw unhealthy character another way
+
+	character class can have a health boolean
+	character class returns img based on boolean
+	character class has access to 2 img matricies 

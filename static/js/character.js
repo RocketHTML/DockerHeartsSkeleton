@@ -28,6 +28,8 @@ class Character {
 	constructor(h) {
 		this.home = h;
 		this.img_mtrx = h.directions;
+		this.img_mtrxalt = h.directionsalt;
+		this.heart = true;
 		this.x = 0;
 		this.y = 0;
 		this.xx = 0;
@@ -61,7 +63,10 @@ class Character {
 	}
 
 	get image(){
-		return this.img_mtrx[this.cdir][this.cframe];
+		if (this.heart)
+			return this.img_mtrx[this.cdir][this.cframe];
+		else
+			return this.img_mtrxalt[this.cdir][this.cframe];
 	}
 
 	update(){

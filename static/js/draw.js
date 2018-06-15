@@ -12,6 +12,11 @@ function preload() {
 		home.directions[L][i] = loadImage(dir + char + poses[L] + i + '.png')
 		home.directions[U][i] = loadImage(dir + char + poses[U] + i + '.png')
 		home.directions[D][i] = loadImage(dir + char + poses[D] + i + '.png')
+
+		home.directionsalt[R][i] = loadImage(dir + 'alien' + poses[R] + i + '.png')
+		home.directionsalt[L][i] = loadImage(dir + 'alien' + poses[L] + i + '.png')
+		home.directionsalt[U][i] = loadImage(dir + 'alien' + poses[U] + i + '.png')
+		home.directionsalt[D][i] = loadImage(dir + 'alien' + poses[D] + i + '.png')
 	}
 }
 

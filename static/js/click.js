@@ -38,6 +38,7 @@ class Notepad {
 		this.dropbtn.addEventListener("click", this.dropFile())
 
 		this.collectbtn		= this.makeButton("collect")
+		this.collectbtn.addEventListener("click", this.collectFile())
 
 		this.editbtn		= this.makeButton("edit")
 		this.editbtn.addEventListener("click", this.editFile())
@@ -158,9 +159,11 @@ class Notepad {
 		// will get back to this
 		soc = this.socket
 		homie = this.home
-		char = this.character
-		text = this.textarea
-		return function(){}
+		return function(){
+			let key = homie.selectedfile.key
+			soc.emit('collect', {filekey:key, uid:homie.uid})
+			homie.selectedfile = undefined
+		}
 	}
 
 	editFile(){

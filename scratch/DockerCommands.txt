@@ -6,10 +6,9 @@ docker run -it --rm [distribution] [command]
 docker stop [id | name of container]
 docker kill [id | name of container]
 docker ps [options]
-docker images
 docker rm $(docker ps -aq)
 	- give all container ids
-docker cp <name>:<path> <hostpath>  - copy file from container to host
+
 ---------------------------------------------
 Dockerfile
 
@@ -40,3 +39,25 @@ echo hellow world, from a script file!
 ---------------------------------------------
 
 Next Tweet: Externalizing yourself
+--------------------------
+
+this.textarea           = document.createElement("textarea")
+                this.div.appendChild(this.textarea)
+                this.dropbtn            = document.createElement("button")
+                this.dropbtn.style.display = "none"
+                this.div.appendChild(this.dropbtn)
+                this.collectbtn         = document.createElement("button")
+                this.collectbtn.style.dispaly = "none"
+                this.div.appendChild(this.collectbtn)
+                this.editbtn            = document.createElement("button")
+                this.editbtn.display = "none"
+                this.div.appendChild(this.editbtn)
+                this.closebtn           = document.createElement("button")
+
+                this.open = false
+
+errors:
+ docker.errors.ContainerError
+	- return this message
+ docker.errors.APIError
+	- cmd not supported (may supress this error)

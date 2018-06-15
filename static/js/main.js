@@ -11,6 +11,7 @@ class Home {
 		this.socket 		= {};
 		this.socket.disconnect 	= () => {};
 		this.directions 	= [[], [], [], []];
+		this.directionsalt	= [[], [], [], []];
 		this.update 		= this.updateOthers();
 	}
 
@@ -44,6 +45,7 @@ class Home {
 				zeno.walking = other.isWalking;
 				zeno.xx = other.xx;
 				zeno.yy = other.yy;
+				zeno.heart = other.heart
 			}
 		}
 

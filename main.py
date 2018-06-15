@@ -17,17 +17,19 @@ def handleMessage(msg):
 
 @socketio.on('update')
 def update(character):
+	characters[character['uid']] = character
 	emit("update", character, broadcast=True)
 
 @socketio.on('drop')
 def drop(filedict):
 	files[filedict['key']] = filedict
-	# check if malicious
 	emit("drop", filedict, broadcast=True)
 
 @socketio.on('collect')
 def collect(keydict):
-	res = dock.run(files[keydict['key']])
+	res = dock.run(files[keydict['filekey']])
+	characters[keydict['uid']]['heart'] = res['heartexists']
+	emit("update", characters[keydict['uid']], broadcast=True)
 	
 
 @app.route('/')
