@@ -27,8 +27,9 @@ def drop(filedict):
 
 @socketio.on('collect')
 def collect(keydict):
-	res = dock.run(files[keydict['filekey']])
+	res = dock.run(files[keydict['filekey']]['text'])
 	characters[keydict['uid']]['heart'] = res['heartexists']
+	print(characters[keydict['uid']]['heart'])
 	emit("update", characters[keydict['uid']], broadcast=True)
 	
 

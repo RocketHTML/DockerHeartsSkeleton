@@ -157,8 +157,8 @@ class Notepad {
 	collectFile(){
 		// file must be defined at this point
 		// will get back to this
-		soc = this.socket
-		homie = this.home
+		let soc = this.socket
+		let homie = this.home
 		return function(){
 			let key = homie.selectedfile.key
 			soc.emit('collect', {filekey:key, uid:homie.uid})
