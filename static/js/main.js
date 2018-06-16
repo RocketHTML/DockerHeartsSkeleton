@@ -3,7 +3,6 @@ class Home {
 		this.uid 	= undefined;
 		this.username	= undefined;
 		this.alterego	= undefined;
-		this.roomopen	= undefined;
 		this.views  	= [];
 		this.others 	= {};
 		this.othersList = [];
@@ -29,8 +28,6 @@ class Home {
 	updateOthers(){
 			let homie = this;
 		return function(other) {
-			if (homie.roomopen === undefined)
-				return
 			if (homie.others[other.uid] === undefined)
 			{
 				if (other.uid === homie.uid)
@@ -49,11 +46,7 @@ class Home {
 				zeno.walking = other.isWalking;
 				zeno.xx = other.xx;
 				zeno.yy = other.yy;
-				console.log(zeno.heart)
 			}
-			else
-				zeno.heart = other.heart;
-			console.log(other.heart)
 		}
 
 	}
@@ -261,10 +254,9 @@ class Room extends View {
 		this.keyboard 	= new Keyboard(this.character)
 		this.notepad 	= new Notepad(this.character)
 		this.home.character = this.character
-		this.home.roomopen = true
 		this.home.socket.on("message", this.interface.appendMessage())
 		this.home.update({uid:this.home.uid, isWalking:0, direction:3,
-				xx:0, yy:0});
+				xx:0, yy:0, heart:this.character.heart});
 		this.interface.submit.addEventListener("click", this.interface.sendMessage())
 	}
 }
@@ -296,8 +288,3 @@ let room 		= new Room(home, uinterface);
 // ------------------------------------------------------------
 
 login.display();
-setInterval(function(){
-	console.log('no')
-}, 2000)
-
-

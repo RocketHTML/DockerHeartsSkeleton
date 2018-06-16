@@ -11,6 +11,10 @@ socketio = SocketIO(app)
 files = {}
 characters = {}
 
+@socketio.on('disconnect')
+def disconnect():
+	print('a user disconnected')
+
 @socketio.on('message')
 def handleMessage(msg):
 	send(msg, broadcast=True)
